@@ -1,5 +1,16 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
+<hbox >
+  <box xs="hidden" sm="1 visible">
+  </box>
+    <centered justify="start">
+      <button {{action "makeNew"}} class="userinput green">New</button>
+    {{#unless isHome}}
+      <button {{action "goHome"}} class="userinput grey">All</button>
+    {{/unless}}
+    </centered>
+  <box justify="center">
+    <h1>Idea Processor</h1>
+  </box>
+  <box xs="2" sm="3">
+  </box>
+</hbox>
 {{outlet}}

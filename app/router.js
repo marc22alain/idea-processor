@@ -7,6 +7,12 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('idea-processor');
+  this.route('documents');
+  this.route('document', {
+    path: '/document/:ideanode_id',
+    path: '/document/:metaText'
+  });
 });
 
 export default Router;

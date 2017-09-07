@@ -15,6 +15,13 @@
     "test": "ember test"
   },
   "devDependencies": {
+    "@html-next/flexi-config": "^2.0.0",
+    "@html-next/flexi-default-styles": "^2.0.1",
+    "@html-next/flexi-dsl": "^2.0.1",
+    "@html-next/flexi-layouts": "^2.0.1",
+    "@html-next/flexi-sustain": "^2.0.0",
+    "@orbit/indexeddb": "^0.15.3",
+    "@orbit/indexeddb-bucket": "^0.15.0",
     "broccoli-asset-rev": "^2.4.5",
     "ember-ajax": "^3.0.0",
     "ember-cli": "2.13.2",
@@ -29,16 +36,18 @@
     "ember-cli-shims": "^1.1.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-uglify": "^1.2.0",
-    "ember-data": "^2.13.0",
     "ember-export-application-global": "^2.0.0",
     "ember-load-initializers": "^1.0.0",
+    "ember-orbit": "^0.15.2",
     "ember-resolver": "^4.0.0",
     "ember-source": "~2.13.0",
     "ember-welcome-page": "^3.0.0",
+    "flexi": "^2.0.1",
     "loader.js": "^4.2.3"
   },
   "engines": {
     "node": ">= 4"
   },
-  "private": true
+  "private": true,
+  "dependencies": {}
 }

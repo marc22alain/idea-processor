@@ -1,0 +1,9 @@
+{{#if model.rootPresent}}
+  {{#each model.root as |root|}}
+    {{idea-box model=root}}
+  {{/each}}
+{{else}}
+  <button {{action "makeRoot"}} class="red" data-test-cancel-invite-user>Make Root</button>
+{{/if}}
+{{outlet}}
+

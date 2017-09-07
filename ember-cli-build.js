@@ -4,8 +4,22 @@ const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
     // Add options here
+     // Orbit-specific options
+    orbit: {
+      packages: [
+        '@orbit/indexeddb',
+        '@orbit/indexeddb-bucket'
+      ]
+    },
+    // Using these options to fix test errors in PhantomJS, and other legacy browsers that don't support 'Symbol'.
+    // https://stackoverflow.com/questions/32231773/ember-tests-passing-in-chrome-not-in-phantomjs
+    babel: {
+      optional: ['es6.spec.symbols']
+    },
+    'ember-cli-babel': {
+      includePolyfill: true
+    }
   });
-
   // Use `app.import` to add additional libraries to the generated
   // output files.
   //
