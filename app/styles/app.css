@@ -55,9 +55,14 @@ textarea {
   padding-left: 20px;
 }
 
-button {
-  height: 30px;
-  min-width: 30px;
+.control-button {
+  font-size: 12px;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  margin:2px;
+  height: 20px;
+  min-width: 20px;
+  max-width: 35px;
 }
 
 .level0 {

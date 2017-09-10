@@ -10,8 +10,9 @@ Router.map(function() {
   this.route('idea-processor');
   this.route('documents');
   this.route('document', {
-    path: '/document/:ideanode_id',
-    path: '/document/:metaText'
+    path: '/document/:ideanode_id'
+    // ,
+    // path: '/document/:metaText'
   });
 });
 

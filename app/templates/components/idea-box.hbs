@@ -1,15 +1,15 @@
-<vbox class={{ruledClass}}>
+<vbox class={{ruledClass}} draggable="true">
   <hbox>
-    {{input type="number" value=model.order class=(concat-string levelClass "userinput square") }}
+    {{input type="number" value=model.order class=(concat-string levelClass "control-button") }}
     {{input type="checkbox" name="isDisplayed" checked=model.display}}
     {{input type="checkbox" name="showComputed" checked=model.showComputed}}
     <box xs=8>
       {{textarea rows=isNotShrunk value=model.metaText class=(concat-string levelClass "userinput metaText") }}
     </box>
     {{input type="checkbox" name="isNotShrunk" checked=model.shrink}}
-    <button {{action "deleteIdea"}} class="userinput red">-</button>
-    <button {{action "addIdea"}} class="userinput green">+</button>
-    <button {{action "toggleChildren"}} class="userinput blue">!</button>
+    <button {{action "deleteIdea"}} class="control-button red">-</button>
+    <button {{action "addIdea"}} class="control-button green">+</button>
+    <button {{action "toggleChildren"}} class="control-button blue">!</button>
   </hbox>
   {{#if hasChildren}}
     {{#if model.showComputed}}
