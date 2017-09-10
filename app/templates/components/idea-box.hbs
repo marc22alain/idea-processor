@@ -1,4 +1,4 @@
-<vbox class={{ruledClass}} draggable="true">
+<vbox class={{concat-string ruledClass targetClass}}>
   <hbox>
     {{input type="number" value=model.order class=(concat-string levelClass "control-button") }}
     {{input type="checkbox" name="isDisplayed" checked=model.display}}
@@ -10,6 +10,7 @@
     <button {{action "deleteIdea"}} class="control-button red">-</button>
     <button {{action "addIdea"}} class="control-button green">+</button>
     <button {{action "toggleChildren"}} class="control-button blue">!</button>
+    {{drag-drop parentId=model.id grandParentId=parentNodeId isTarget=isTarget}}
   </hbox>
   {{#if hasChildren}}
     {{#if model.showComputed}}
@@ -20,7 +21,7 @@
   {{/if}}
     {{#if showChildren}}
       {{#each model.childnode as |child|}}
-        {{idea-box model=child level=nextlevel}}
+        {{idea-box model=child level=nextlevel parentNodeId=model.id}}
       {{/each}}
   {{/if}}
 </vbox>

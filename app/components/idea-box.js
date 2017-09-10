@@ -1,6 +1,18 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
+  attributeBindings: ['style'],
+  isTarget: false,
+  style: Ember.computed('level', function() {
+    return Ember.String.htmlSafe('z-index:' + this.get('level') + ';position:relative');
+  }),
+  targetClass: Ember.computed('isTarget', function() {
+    if (this.get('isTarget')) {
+      return 'target-on';
+    }
+    return 'target-off';
+  }),
+
   store: Ember.inject.service(),
   isNotShrunk: Ember.computed('model.shrink', function() {
     if (this.get('model.shrink')) {
