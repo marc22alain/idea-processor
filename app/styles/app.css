@@ -65,6 +65,15 @@ textarea {
   max-width: 35px;
 }
 
+.target-button {
+  font-size: 12px;
+  border-radius: 8px;
+  border: 2px solid #bbb;
+  margin: 2px;
+  height: 35px;
+  width: 45px;
+}
+
 .level0 {
   background-color: #d0e0ff;
 }
@@ -83,4 +92,11 @@ textarea {
 
 .level4 {
   background-color: #ffe0c0;
+}
+
+.target-on {
+  border: 5px solid #ff0000;
+}
+
+.target-off {
 }
