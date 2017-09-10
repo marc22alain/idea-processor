@@ -4,7 +4,7 @@
     {{input type="checkbox" name="isDisplayed" checked=model.display}}
     {{input type="checkbox" name="showComputed" checked=model.showComputed}}
     <box xs=8>
-      {{textarea rows=isNotShrunk value=model.metaText class=(concat-string levelClass "userinput metaText") }}
+      {{textarea rows=isNotShrunk value=model.metaText class=(concat-string nodeClass levelClass "userinput") }}
     </box>
     {{input type="checkbox" name="isNotShrunk" checked=model.shrink}}
     <button {{action "deleteIdea"}} class="control-button red">-</button>
@@ -12,13 +12,15 @@
     <button {{action "toggleChildren"}} class="control-button blue">!</button>
     {{drag-drop parentId=model.id grandParentId=parentNodeId isTarget=isTarget}}
   </hbox>
-  {{#if hasChildren}}
-    {{#if model.showComputed}}
-      <hbox>
-        <p>{{computedText}}</p>
-      </hbox>
-    {{/if}}
-  {{/if}}
+      {{#if hasChildren}}
+        {{#if model.showComputed}}
+          <hbox>
+            <box xs=1></box>
+            <box class="leaf-text computed-box">{{computedText}}</box>
+            <box xs=3></box>
+          </hbox>
+        {{/if}}
+      {{/if}}
     {{#if showChildren}}
       {{#each model.childnode as |child|}}
         {{idea-box model=child level=nextlevel parentNodeId=model.id}}

@@ -30,6 +30,12 @@ export default Ember.Component.extend({
     }
     return 'indent';
   }),
+  nodeClass: Ember.computed('hasChildren', 'model.showComputed', function() {
+    if ((this.get('hasChildren') && !this.get('model.showComputed')) || !this.get('level')) {
+      return 'meta-text';
+    }
+    return 'leaf-text';
+  }),
   showChildren: Ember.computed('model.showsChildren', function() {
     return this.get('model.showsChildren');
   }),
@@ -60,7 +66,10 @@ export default Ember.Component.extend({
   nextlevel: Ember.computed('level', function() {
     return this.get('level') + 1;
   }),
-  levelClass: Ember.computed('level', function() {
+  levelClass: Ember.computed('level', 'hasChildren', function() {
+    if (!this.get('hasChildren') && this.get('level')) {
+      return 'nolevel';
+    }
     let level = this.get('level');
     if (level > 4) {
       return 'level3';
