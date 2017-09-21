@@ -1,15 +1,20 @@
 <vbox class={{concat-string ruledClass targetClass}}>
   <hbox>
     {{input type="number" value=model.order class=(concat-string levelClass "control-button") }}
-    {{input type="checkbox" name="isDisplayed" checked=model.display}}
-    {{input type="checkbox" name="showComputed" checked=model.showComputed}}
+    {{input type="checkbox" name="isDisplayed" checked=model.display class="check-box"}}
+    {{input type="checkbox" name="showComputed" checked=model.showComputed class="check-box"}}
     <box xs=8>
       {{textarea rows=isNotShrunk value=model.metaText class=(concat-string nodeClass levelClass "userinput") }}
     </box>
-    {{input type="checkbox" name="isNotShrunk" checked=model.shrink}}
-    <button {{action "deleteIdea"}} class="control-button red">-</button>
-    <button {{action "addIdea"}} class="control-button green">+</button>
-    <button {{action "toggleChildren"}} class="control-button blue">!</button>
+    {{input type="checkbox" name="isNotShrunk" checked=model.shrink class="check-box"}}
+    <img {{action "deleteIdea"}} src="/images/delete.svg" class="show-arrow">
+    <img {{action "addIdea"}} src="/images/add.svg" class="show-arrow">
+    {{#if showChildren}}
+      <img {{action "toggleChildren"}} src="/images/up_arrow.svg" class="show-arrow">
+    {{else}}
+      <img {{action "toggleChildren"}} src="/images/down_arrow.svg" class="show-arrow">
+    {{/if}}
+
     {{drag-drop parentId=model.id grandParentId=parentNodeId isTarget=isTarget}}
   </hbox>
       {{#if hasChildren}}

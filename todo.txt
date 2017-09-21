@@ -2,20 +2,28 @@ Idea Processor
 
 Bugs
 - deleting a parent node leaves its children in the DB
+- recompiling of computedText does not flow all the way up the chain
+  .or at least, not consistently
+- deleted nodes don't stay deleted (!?)
+- lost the focus() to newly created nodes
 
 
 Features
+- rendering of final document
+- icons expanding / contracting children, with down / up arrows
+- icons for drag-'n-drop
+- re-ordering of nodes
+  .sort the children in the list
+
+
+Done
 - √ when making a new node, focus shifts to that node
   .use element.focus() in component.didInsertElement()
 - page structure:
   √ .index holds all root nodes (independent documents)
   √ .computed routes makes a new URL for each root node (document)
-- rendering of node text (from children)
+- √ rendering of node text (from children)
   .do I keep the meta text ? how to display it ?
-- rendering of final document
-- icons expanding / contracting children, with down / up arrows
-- re-ordering of nodes
-- drag-'n-drop nodes to assign to new parents
-- sort the children in the list
+- √ drag-'n-drop nodes to assign to new parents
 - √ more effective watching of child nodes
   .although seems to working when watching 'model.childnode.length'

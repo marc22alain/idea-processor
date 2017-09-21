@@ -11,8 +11,6 @@ Router.map(function() {
   this.route('documents');
   this.route('document', {
     path: '/document/:ideanode_id'
-    // ,
-    // path: '/document/:metaText'
   });
 });
 

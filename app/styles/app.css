@@ -113,3 +113,18 @@ textarea {
   border: 1px solid #bbb;
   margin: 2px;
 }
+
+.show-arrow {
+  border-radius: 5px;
+  border: 1px solid #bbb;
+  background-color: #afefff;
+  margin:2px;
+  height: 19px;
+  width: 19px;
+}
+
+.check-box {
+  height: 20px;
+  width: 20px;
+  font-size: 20px;
+}
