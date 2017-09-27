@@ -87,7 +87,7 @@ export default Ember.Component.extend({
     },
     addIdea() {
       let parent = this.get('model');
-      console.log(parent.get('childnode.length'));
+      // console.log(parent.get('childnode.length'));
       let newIdea = {
         type: 'ideanode',
         attributes: {
@@ -119,8 +119,7 @@ export default Ember.Component.extend({
               forkedStore.destroy();});
         })
         .catch((e) => {
-          Ember.debug('Failed to add child on UPDATE addRecord: ');
-          console.log(e);
+          Ember.debug('Failed to add child on UPDATE addRecord: ' + e);
           forkedStore.destroy();});
     },
     toggleChildren() {
@@ -129,7 +128,7 @@ export default Ember.Component.extend({
     }
   },
   didInsertElement() {
-    let textArea = this.$('.metaText');
+    let textArea = this.$('textarea');
     textArea.focus();
   }
 });

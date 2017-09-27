@@ -5,25 +5,29 @@ Bugs
 - recompiling of computedText does not flow all the way up the chain
   .or at least, not consistently
 - deleted nodes don't stay deleted (!?)
-- lost the focus() to newly created nodes
 
 
 Features
 - rendering of final document
-- icons expanding / contracting children, with down / up arrows
-- icons for drag-'n-drop
 - re-ordering of nodes
   .sort the children in the list
+- make the text expand/shrink checkbox appear only when there is more text than can be shown.
 
 
 Done
-- √ when making a new node, focus shifts to that node
+- √ FEATURE: when making a new node, focus shifts to that node
   .use element.focus() in component.didInsertElement()
-- page structure:
+- FEATURE: page structure:
   √ .index holds all root nodes (independent documents)
   √ .computed routes makes a new URL for each root node (document)
-- √ rendering of node text (from children)
+- √ FEATURE: rendering of node text (from children)
   .do I keep the meta text ? how to display it ?
-- √ drag-'n-drop nodes to assign to new parents
-- √ more effective watching of child nodes
+- √ FEATURE: drag-'n-drop nodes to assign to new parents
+- √ BUG: more effective watching of child nodes
   .although seems to working when watching 'model.childnode.length'
+- √ FEATURE: icons for drag-'n-drop
+- √ FEATURE: icons expanding / contracting children, with down / up arrows
+- √ BUG: lost the focus() to newly created nodes (CSS selector changed)
+
+Observations:
+- there are still lots of distractions on the page

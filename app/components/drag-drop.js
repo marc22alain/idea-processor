@@ -11,7 +11,7 @@ export default Ember.Component.extend({
   dragStart(event) {
     event.originalEvent.dataTransfer.setData('parent-node-id', this.get('parentId'));
     event.originalEvent.dataTransfer.setData('grand-parent-node-id', this.get('grandParentId'));
-    console.log('dragStart ' + this.get('parentId') + ' :: ' + this.get('grandParentId'));
+    // console.log('dragStart ' + this.get('parentId') + ' :: ' + this.get('grandParentId'));
   },
   drag() {
     // console.log('drag');
@@ -20,7 +20,7 @@ export default Ember.Component.extend({
   dragEnter() {
     // console.log('dragEnter');
     this.set('isTarget', true);
-    console.log('dragEnter ' + this.get('parentId'));
+    // console.log('dragEnter ' + this.get('parentId'));
   },
   dragLeave() {
     // console.log('dragLeave');
@@ -35,7 +35,7 @@ export default Ember.Component.extend({
     event.originalEvent.preventDefault();
     let parentNodeId = event.originalEvent.dataTransfer.getData('parent-node-id');
     let grandParentNodeId = event.originalEvent.dataTransfer.getData('grand-parent-node-id');
-    console.log('DROP: ' + parentNodeId + ' :: ' + grandParentNodeId);
+    // console.log('DROP: ' + parentNodeId + ' :: ' + grandParentNodeId);
     this.addToNewParentNode(parentNodeId, this.get('parentId'));
     this.removeFromOldParentNode(parentNodeId, grandParentNodeId);
     this.set('isTarget', false);
