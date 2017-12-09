@@ -31,7 +31,7 @@
       {{/if}}
     {{#if showChildren}}
       {{#each sortedChildren as |child|}}
-        {{idea-box model=child level=nextlevel parentNodeId=model.id}}
+        {{idea-box model=child level=nextlevel parentNodeId=model.id sortOrder=sortOrder deleteIdeaNode=deleteIdeaNode}}
       {{/each}}
   {{/if}}
 </vbox>

@@ -88,10 +88,10 @@ export default Ember.Component.extend({
     deleteIdea() {
       let doomed = this.get('model');
       if (doomed.get('root') === true) {
-        doomed.remove();
+        this.sendAction('deleteIdeaNode', doomed);
         this.sendAction('transitionAction');
       }
-      doomed.remove();
+      this.sendAction('deleteIdeaNode', doomed);
     },
     addIdea() {
       let parent = this.get('model');
