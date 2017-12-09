@@ -4,8 +4,7 @@ import Ember from 'ember';
   NOTES:
   - a hasOne relationship results in the related node being stored as a simple attribute, with its id as the value.
 
-  Use: https://github.com/eligrey/FileSaver.js/
-  Ref: https://spin.atomicobject.com/2014/02/05/generate-files-javascript-ember-js/
+  Ref: Took file-saving hints from RecorderJS Recorder.forceDownload()
 */
 
 var model;
@@ -14,19 +13,6 @@ export default function storeToJson(store) {
   extractModel(store);
   return new Ember.RSVP.Promise(function(resolve, reject) {
     store.query(q => q.findRecords('ideanode'))
-          // .then((allNodes) => {
-          //   let first = allNodes[4];
-          //   let json = {
-          //     'type': first.get('type'),
-          //     'id': first.get('id')
-          //   };
-          //   addAttributes(json, first);
-          //   addRelationships(json, first);
-          //   console.log(json);
-          //   console.log(first);
-          //   console.log(first.get('childnode'));
-          //   console.log(first.get('childnode')._content);
-          // });
           .then((allNodes) => {
             let allJson = {'data':[]};
             allNodes.forEach(function(node) {
@@ -38,7 +24,6 @@ export default function storeToJson(store) {
               addRelationships(json, node);
               allJson.data.push(json);
             });
-            console.log(allJson);
             saveFile(allJson);
             resolve('√');
           })
@@ -55,16 +40,10 @@ function extractModel(store) {
   let models = store.get('_identityMap._schema._models');
   let ideanodeModel = models.ideanode;
   model = ideanodeModel;
-  console.log(store);
-  console.log(schema);
-  // console.log(ideanodeModel.attributes);
   let attributeKeys = Object.keys(ideanodeModel.attributes);
   model.attributeKeys = attributeKeys;
-  // console.log(model.attributes);
-  // console.log(ideanodeModel.relationships);
   let relationshipKeys = Object.keys(ideanodeModel.relationships);
   model.relationshipKeys = relationshipKeys;
-  console.log(model.relationships);
 }
 
 function addAttributes(json, record) {
@@ -113,7 +92,6 @@ function addRelationships(json, record) {
       case 'hasMany': {
         let childrenNodes = record.get(key)._content;
         if (childrenNodes.length > 0) {
-          console.log('HasChildren');
           json.relationships[key] = {};
           json.relationships[key].data = [];
           childrenNodes.forEach(function(childNode) {
