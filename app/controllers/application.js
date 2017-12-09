@@ -42,6 +42,12 @@ export default Ember.Controller.extend({
       // console.log(this.get('target.currentURL'));
       this.transitionToRoute('branch-focus', this.getRouteIdParam());
     },
+    recentOrder() {
+      let currentRoute = this.get('target.currentURL');
+      let id = currentRoute.split('/')[2];
+      console.log(this.getRouteIdParam());
+      this.transitionToRoute('recent-order', this.getRouteIdParam());
+    },
     exportAll() {
       let store = this.get('store');
       let status = $('#store-to-json-result');

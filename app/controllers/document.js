@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  sortOrder: 'order',
   actions: {
     /*
       Gets called when a root idea-node is deleted.

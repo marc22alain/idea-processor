@@ -15,6 +15,9 @@ Router.map(function() {
   this.route('branch-focus', {
     path: '/branch-focus/:ideanode_id'
   });
+  this.route('recent-order', {
+    path: '/recent-order/:ideanode_id'
+  });
 });
 
 export default Router;

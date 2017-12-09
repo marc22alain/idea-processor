@@ -77,8 +77,11 @@ export default Ember.Component.extend({
     return 'level' + level.toString();
   }),
   sortedChildren: Ember.computed('model.childnode.length', function() {
-    console.log('RE-computing sortedChildren');
     let children = this.get('model.childnode');
+    if (this.get('sortOrder') === 'recent') {
+      return children.sortBy('lastUpdate').reverse();
+
+    }
     return children.sortBy('order');
   }),
   actions: {
