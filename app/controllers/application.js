@@ -44,7 +44,13 @@ export default Ember.Controller.extend({
     },
     exportAll() {
       let store = this.get('store');
-      storeToJson(store);
+      let status = $('#store-to-json-result');
+      storeToJson(store).then((message) => {
+        status.text(message);
+      })
+      .catch(() => {
+        status.text('X');
+      });
 
       // store.query(q => q.findRecords('ideanode'))
       //   .then((allNodes) => {

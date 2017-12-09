@@ -12,34 +12,40 @@ var model;
 
 export default function storeToJson(store) {
   extractModel(store);
-  store.query(q => q.findRecords('ideanode'))
-        // .then((allNodes) => {
-        //   let first = allNodes[4];
-        //   let json = {
-        //     'type': first.get('type'),
-        //     'id': first.get('id')
-        //   };
-        //   addAttributes(json, first);
-        //   addRelationships(json, first);
-        //   console.log(json);
-        //   console.log(first);
-        //   console.log(first.get('childnode'));
-        //   console.log(first.get('childnode')._content);
-        // });
-        .then((allNodes) => {
-          let allJson = {'data':[]};
-          allNodes.forEach(function(node) {
-            let json = {
-              'type': node.get('type'),
-              'id': node.get('id')
-            };
-            addAttributes(json, node);
-            addRelationships(json, node);
-            allJson.data.push(json);
+  return new Ember.RSVP.Promise(function(resolve, reject) {
+    store.query(q => q.findRecords('ideanode'))
+          // .then((allNodes) => {
+          //   let first = allNodes[4];
+          //   let json = {
+          //     'type': first.get('type'),
+          //     'id': first.get('id')
+          //   };
+          //   addAttributes(json, first);
+          //   addRelationships(json, first);
+          //   console.log(json);
+          //   console.log(first);
+          //   console.log(first.get('childnode'));
+          //   console.log(first.get('childnode')._content);
+          // });
+          .then((allNodes) => {
+            let allJson = {'data':[]};
+            allNodes.forEach(function(node) {
+              let json = {
+                'type': node.get('type'),
+                'id': node.get('id')
+              };
+              addAttributes(json, node);
+              addRelationships(json, node);
+              allJson.data.push(json);
+            });
+            console.log(allJson);
+            saveFile(allJson);
+            resolve('√');
+          })
+          .catch((e) => {
+            reject(e);
           });
-          console.log(allJson);
-        });
-
+  });
 }
 
 
@@ -122,4 +128,23 @@ function addRelationships(json, record) {
         throw new Error('Unknown relationship key');
     };
   });
+}
+
+function saveFile(data) {
+  var file = new Blob([JSON.stringify(data)], {type: 'text/plain'});
+  var url = (window.URL || window.webkitURL).createObjectURL(file);
+  let date = new Date();
+  let filename = 'store-data_' + date.toLocaleDateString().replace(/\//g, '-') + '.json';
+
+  var link = window.document.createElement('a');
+  link.href = url;
+  link.download = filename;
+  var click = document.createEvent("Event");
+  click.initEvent("click", true, true);
+  link.dispatchEvent(click);
+
+  setTimeout(function() {
+      window.URL.revokeObjectURL(url);
+  }, 0);
+
 }

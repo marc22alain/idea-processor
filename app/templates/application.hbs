@@ -5,6 +5,7 @@
       <button {{action "makeNew"}} class="userinput green">New</button>
     {{#if isHome}}
       <button {{action "exportAll"}} class="userinput grey">Export All</button>
+      <span id="store-to-json-result"></span>
     {{else}}
       <button {{action "goHome"}} class="userinput grey">All</button>
       <button {{action "branchFocus"}} class="userinput blue">Branch focus</button>
