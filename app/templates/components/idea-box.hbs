@@ -9,11 +9,14 @@
     {{input type="checkbox" name="isNotShrunk" checked=model.shrink class="check-box"}}
     <img {{action "deleteIdea"}} src="/images/delete.svg" class="show-arrow">
     <img {{action "addIdea"}} src="/images/add.svg" class="show-arrow">
-    {{#if showChildren}}
-      <img {{action "toggleChildren"}} src="/images/up_arrow.svg" class="show-arrow">
-    {{else}}
-      <img {{action "toggleChildren"}} src="/images/down_arrow.svg" class="show-arrow">
+    {{#if hasChildren}}
+      {{#if showChildren}}
+        <img {{action "toggleChildren"}} src="/images/up_arrow.svg" class="show-arrow">
+      {{else}}
+        <img {{action "toggleChildren"}} src="/images/down_arrow.svg" class="show-arrow">
+      {{/if}}
     {{/if}}
+
 
     {{drag-drop parentId=model.id grandParentId=parentNodeId isTarget=isTarget}}
   </hbox>
