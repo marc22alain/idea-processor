@@ -3,9 +3,12 @@
   </box>
     <centered justify="start">
       <button {{action "makeNew"}} class="userinput green">New</button>
-    {{#unless isHome}}
+    {{#if isHome}}
+      <button {{action "exportAll"}} class="userinput grey">Export All</button>
+    {{else}}
       <button {{action "goHome"}} class="userinput grey">All</button>
-    {{/unless}}
+      <button {{action "branchFocus"}} class="userinput blue">Branch focus</button>
+    {{/if}}
     </centered>
   <box justify="center">
     <h1>Idea Processor</h1>

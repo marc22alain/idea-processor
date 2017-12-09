@@ -76,6 +76,11 @@ export default Ember.Component.extend({
     }
     return 'level' + level.toString();
   }),
+  sortedChildren: Ember.computed('model.childnode.length', function() {
+    console.log('RE-computing sortedChildren');
+    let children = this.get('model.childnode');
+    return children.sortBy('order');
+  }),
   actions: {
     deleteIdea() {
       let doomed = this.get('model');

@@ -14,5 +14,14 @@ export default Model.extend({
   root: attr('boolean'),
   display: attr('boolean'),
   showsChildren: attr('boolean'),
-  showComputed: attr('boolean')
+  showComputed: attr('boolean'),
+  lastUpdate: attr('datetime'),
+
+
+  replaceAttribute(attribute, value, options) {
+    if (attribute !== 'lastUpdate') {
+      this.set('lastUpdate', new Date());
+    }
+    Ember.run(() => this._super(attribute, value, options));
+  }
 });

@@ -5,6 +5,7 @@ Bugs
 - recompiling of computedText does not flow all the way up the chain
   .or at least, not consistently
 - deleted nodes don't stay deleted (!?)
+  .but their data is destroyed (?!)
 
 
 Features

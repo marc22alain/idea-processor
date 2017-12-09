@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import storeToJson from 'idea-processor/utils/store-to-json';
 
 export default Ember.Controller.extend({
   isHome: Ember.computed('currentRouteName', function() {
@@ -8,6 +9,9 @@ export default Ember.Controller.extend({
       return false;
     }
   }),
+  getRouteIdParam() {
+    return this.get('target.currentURL').split('/')[2];
+  },
   actions: {
     makeNew() {
       Ember.debug('Make a root node');
@@ -30,6 +34,30 @@ export default Ember.Controller.extend({
     },
     goHome() {
       this.transitionToRoute('documents');
+    },
+    branchFocus() {
+      let currentRoute = this.get('target.currentURL');
+      let id = currentRoute.split('/')[2];
+      console.log(this.getRouteIdParam());
+      // console.log(this.get('target.currentURL'));
+      this.transitionToRoute('branch-focus', this.getRouteIdParam());
+    },
+    exportAll() {
+      let store = this.get('store');
+      storeToJson(store);
+
+      // store.query(q => q.findRecords('ideanode'))
+      //   .then((allNodes) => {
+      //     let first = allNodes[1];
+      //     console.log(first.get('showsChildren'));
+      //     console.log(first.get('showComputed'));
+      //     let json = {
+      //       'type': first.get('type'),
+      //       'id': first.get('id')
+      //     };
+      //     console.log(json);
+      //     console.log(first);
+      //   });
     }
   }
 });

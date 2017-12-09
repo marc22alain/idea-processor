@@ -27,7 +27,7 @@
         {{/if}}
       {{/if}}
     {{#if showChildren}}
-      {{#each model.childnode as |child|}}
+      {{#each sortedChildren as |child|}}
         {{idea-box model=child level=nextlevel parentNodeId=model.id}}
       {{/each}}
   {{/if}}

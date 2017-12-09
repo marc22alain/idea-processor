@@ -12,6 +12,9 @@ Router.map(function() {
   this.route('document', {
     path: '/document/:ideanode_id'
   });
+  this.route('branch-focus', {
+    path: '/branch-focus/:ideanode_id'
+  });
 });
 
 export default Router;
