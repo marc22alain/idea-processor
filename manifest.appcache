@@ -1,8 +1,8 @@
 CACHE MANIFEST
-# created 2018-03-01T01:51:29.121Z
+# created 2018-03-01T02:02:15.707Z
 
 CACHE:
-assets/idea-processor-2f72979367432bd509b61830f7488ecd.js
+assets/idea-processor-6012233876229d27d8234bea79975dfd.js
 assets/idea-processor-c90590df145ddf358f25362f86591c3e.css
 assets/vendor-becf14be4d6ee60b88817a04f91f61db.css
 assets/vendor-f81a9bb1268780bd8bffd2c699bcf91a.js
@@ -10,6 +10,7 @@ crossdomain.xml
 images/add.svg
 images/delete.svg
 images/down_arrow.svg
+images/trash.svg
 images/up_arrow.svg
 
 NETWORK:
