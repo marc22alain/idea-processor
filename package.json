@@ -12,7 +12,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "deploy": "node gh-pages-deploy.js"
   },
   "devDependencies": {
     "@html-next/flexi-config": "^2.0.0",
@@ -44,6 +45,7 @@
     "ember-source": "~2.13.0",
     "ember-welcome-page": "^3.0.0",
     "flexi": "^2.0.1",
+    "gh-pages": "^1.1.0",
     "loader.js": "^4.2.3"
   },
   "engines": {
