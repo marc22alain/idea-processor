@@ -13,6 +13,7 @@ export default Model.extend({
   order: attr('integer'),
   root: attr('boolean'),
   display: attr('boolean'),
+  shrink: attr('boolean'),
   showsChildren: attr('boolean'),
   showComputed: attr('boolean'),
   lastUpdate: attr('datetime'),

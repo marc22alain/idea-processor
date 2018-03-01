@@ -3,6 +3,9 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   attributeBindings: ['style'],
   isTarget: false,
+  text: Ember.computed(function() {
+    return this.get('model.metaText');
+  }),
   style: Ember.computed('level', function() {
     return Ember.String.htmlSafe('z-index:' + this.get('level') + ';position:relative');
   }),
@@ -138,5 +141,10 @@ export default Ember.Component.extend({
   didInsertElement() {
     let textArea = this.$('textarea');
     textArea.focus();
+    // Save the edited text when the textarea loses focus.
+    // This will get triggered when the user switches to edit another ideanode, or when the page is left.
+    textArea.on('focusout', () => {
+      this.set('model.metaText', this.get('text'));
+    });
   }
 });

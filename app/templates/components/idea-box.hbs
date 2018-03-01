@@ -4,7 +4,7 @@
     {{input type="checkbox" name="isDisplayed" checked=model.display class="check-box"}}
     {{input type="checkbox" name="showComputed" checked=model.showComputed class="check-box"}}
     <box xs=8>
-      {{textarea rows=isNotShrunk value=model.metaText class=(concat-string nodeClass levelClass "userinput") }}
+      {{textarea rows=isNotShrunk value=text class=(concat-string nodeClass levelClass "userinput") spellcheck=false}}
     </box>
     {{input type="checkbox" name="isNotShrunk" checked=model.shrink class="check-box"}}
     <img {{action "deleteIdea"}} src="/images/delete.svg" class="show-arrow">
