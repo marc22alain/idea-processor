@@ -1,5 +1,12 @@
 Idea Processor
 
+Address immediately, for distribution:
+- manifest.appcache
+- nodes now save text only when they lose focus
+  . highlight the textarea when it's changed, hinting that it isn't saved yet
+
+Deploy with `npm run deploy`
+
 Bugs
 - deleting a parent node leaves its children in the DB
 - recompiling of computedText does not flow all the way up the chain
@@ -13,6 +20,20 @@ Features
 - re-ordering of nodes
   .sort the children in the list
 - make the text expand/shrink checkbox appear only when there is more text than can be shown.
+
+App error logging, to help debug the IndexedDB issue and others
+- set up an error-logging server
+  . Node + Express
+- set up and endpoint
+  . or custom ?
+- make it a database
+  . MongoDB ?
+  . what's lightweight ? it has to run as a separate service
+  . indexable text
+  . with particular app and version, as source
+- apps have the logging service, as an add-on (eventually) that can be slotted into any JS code base (not just an Ember app)
+  . Ember service should also be lightweight, and use its own libraries for POSTing log data
+    .. in the event of a failed POST, should raise an immediate alarm
 
 
 Done
@@ -32,3 +53,7 @@ Done
 
 Observations:
 - there are still lots of distractions on the page
+
+Bugs:
+- ! Safari closed the IndexedDB, and deleted it!
+  . ? https://github.com/dfahlander/Dexie.js/issues/317
