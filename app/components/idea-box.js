@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import IdeanodeMixin from 'idea-processor/mixins/ideanode';
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(IdeanodeMixin, {
   attributeBindings: ['style'],
   isTarget: false,
   text: Ember.computed(function() {
@@ -9,14 +10,14 @@ export default Ember.Component.extend({
   style: Ember.computed('level', function() {
     return Ember.String.htmlSafe('z-index:' + this.get('level') + ';position:relative');
   }),
+  /* Applies a CSS class to the target for a drag-and-drop operation. */
   targetClass: Ember.computed('isTarget', function() {
     if (this.get('isTarget')) {
       return 'target-on';
     }
     return 'target-off';
   }),
-
-  store: Ember.inject.service(),
+  /* Determines how many rows the textarea should expand to. */
   isNotShrunk: Ember.computed('model.shrink', function() {
     if (this.get('model.shrink')) {
       return '5';
@@ -27,12 +28,14 @@ export default Ember.Component.extend({
   hasChildren: Ember.computed('model.childnode.length', function() {
     return this.get('model.childnode.length') > 0;
   }),
+  /* Applies a CSS class depending whether the node has children, and is required to show them. */
   ruledClass: Ember.computed('hasChildren', 'model.showsChildren', function() {
     if (this.get('hasChildren') && this.get('model.showsChildren')) {
       return 'overruled indent';
     }
     return 'indent';
   }),
+  /* Applies a CSS class depending whether the node is a leaf. */
   nodeClass: Ember.computed('hasChildren', 'model.showComputed', function() {
     if ((this.get('hasChildren') && !this.get('model.showComputed')) || !this.get('level')) {
       return 'meta-text';
@@ -69,6 +72,7 @@ export default Ember.Component.extend({
   nextlevel: Ember.computed('level', function() {
     return this.get('level') + 1;
   }),
+  /* Applies a CSS class according to the node's position in the tree. */
   levelClass: Ember.computed('level', 'hasChildren', function() {
     if (!this.get('hasChildren') && this.get('level')) {
       return 'nolevel';
@@ -79,6 +83,7 @@ export default Ember.Component.extend({
     }
     return 'level' + level.toString();
   }),
+  /* Applies a sorting algorithm to a node's children. */
   sortedChildren: Ember.computed('model.childnode.length', function() {
     let children = this.get('model.childnode');
     if (this.get('sortOrder') === 'recent') {
@@ -88,51 +93,6 @@ export default Ember.Component.extend({
     return children.sortBy('order');
   }),
   actions: {
-    deleteIdea() {
-      let doomed = this.get('model');
-      if (doomed.get('root') === true) {
-        this.sendAction('deleteIdeaNode', doomed);
-        this.sendAction('transitionAction');
-      }
-      this.sendAction('deleteIdeaNode', doomed);
-    },
-    addIdea() {
-      let parent = this.get('model');
-      // console.log(parent.get('childnode.length'));
-      let newIdea = {
-        type: 'ideanode',
-        attributes: {
-          parentnode: parent.id,
-          order: 1,
-          text: '',
-          root: false,
-          display: true
-        }
-      };
-      let store = this.get('store');
-      let forkedStore = store.fork();
-      forkedStore.update(t => t.addRecord(newIdea))
-        .then((record) => {
-          let parentTypeId = { type: 'ideanode', id: parent.get('id')};
-          forkedStore.update(t => t.addToRelatedRecords(parentTypeId, 'childnode', record))
-            .then(() => {
-              store.merge(forkedStore)
-                .then(() => {
-                  Ember.debug('Added child on merge');
-                  forkedStore.destroy();
-                  this.set('model.showsChildren', true);})
-                .catch((e) => {
-                  Ember.debug('Failed to add child on MERGE: ' + e);
-                  forkedStore.destroy();});
-            })
-            .catch((e) => {
-              Ember.debug('Failed to add child on UPDATE relatedRecord: ' + e);
-              forkedStore.destroy();});
-        })
-        .catch((e) => {
-          Ember.debug('Failed to add child on UPDATE addRecord: ' + e);
-          forkedStore.destroy();});
-    },
     toggleChildren() {
       let model = this.get('model');
       model.set('showsChildren', !model.get('showsChildren'));
