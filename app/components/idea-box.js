@@ -99,6 +99,7 @@ export default Ember.Component.extend(IdeanodeMixin, {
     }
   },
   didInsertElement() {
+    this._super(...arguments);
     let textArea = this.$('textarea');
     textArea.focus();
     // Save the edited text when the textarea loses focus.
@@ -106,5 +107,10 @@ export default Ember.Component.extend(IdeanodeMixin, {
     textArea.on('focusout', () => {
       this.set('model.metaText', this.get('text'));
     });
+  },
+  willDestroyElement() {
+    this._super(...arguments);
+    let textArea = this.$('textarea');
+    textArea.off('focusout');
   }
 });
