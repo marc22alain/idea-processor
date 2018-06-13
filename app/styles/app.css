@@ -1,3 +1,7 @@
+body {
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+}
+
 .userinput {
   padding: 5px;
   border-radius: 8px;
@@ -127,4 +131,30 @@ textarea {
   height: 20px;
   width: 20px;
   font-size: 20px;
+}
+
+.doc-listing a {
+  text-decoration: none
+}
+
+.doc-listing  {
+  border-bottom: solid 1px black;
+  padding: 10px;
+  margin: 0px 20px 0 20px;
+}
+
+.doc-listing .title {
+  font-size: 18px;
+  vertical-align: baseline;
+  max-height: 40px;
+  margin-right: 20px;
+  color: #111;
+}
+
+.doc-listing .compiled-text {
+  font-size: 10px;
+  vertical-align: baseline;
+  max-height: 40px;
+  color: #444;
+  overflow: hidden;
 }
