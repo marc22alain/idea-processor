@@ -13,7 +13,7 @@
       {{else}}
         <img {{action "toggleChildren"}} src="images/down_arrow.svg" class="show-arrow">
       {{/if}}
-      <button {{action "toggleComputed"}} class={{computeButtonClass}}>compute</button>
+      <button {{action "toggleComputed"}} class={{computeButtonClass}}>concatenate</button>
     {{/if}}
 
     {{drag-drop parentId=model.id grandParentId=parentNodeId isTarget=isTarget}}
