@@ -1,12 +1,10 @@
 <vbox class={{concat-string ruledClass targetClass}}>
   <hbox>
     {{input type="number" value=model.order class=(concat-string levelClass "control-button") }}
-    {{input type="checkbox" name="isDisplayed" checked=model.display class="check-box"}}
-    {{input type="checkbox" name="showComputed" checked=model.showComputed class="check-box"}}
+    <button {{action "toggleDisplay"}} class={{displayButtonClass}}>display</button>
     <box xs=8>
-      {{textarea rows=isNotShrunk value=text class=(concat-string nodeClass levelClass "userinput") spellcheck=false}}
+      {{textarea rows="1" value=text class=(concat-string nodeClass levelClass "userinput") spellcheck=false}}
     </box>
-    {{input type="checkbox" name="isNotShrunk" checked=model.shrink class="check-box"}}
     <img {{action "deleteIdea"}} src="images/trash.svg" class="show-arrow">
     <img {{action "addIdea"}} src="images/add.svg" class="show-arrow">
     {{#if hasChildren}}
@@ -15,6 +13,7 @@
       {{else}}
         <img {{action "toggleChildren"}} src="images/down_arrow.svg" class="show-arrow">
       {{/if}}
+      <button {{action "toggleComputed"}} class={{computeButtonClass}}>compute</button>
     {{/if}}
 
     {{drag-drop parentId=model.id grandParentId=parentNodeId isTarget=isTarget}}

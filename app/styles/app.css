@@ -76,6 +76,13 @@ textarea {
   width: 45px;
 }
 
+.toggle-button {
+  border-radius: 5px;
+  padding: 2px 2px 2px 2px;
+  height: 2em;
+  margin-top: 2px;
+}
+
 .level0 {
   background-color: #d0e0ff;
 }

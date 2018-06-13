@@ -17,14 +17,6 @@ export default Ember.Component.extend(IdeanodeMixin, {
     }
     return 'target-off';
   }),
-  /* Determines how many rows the textarea should expand to. */
-  isNotShrunk: Ember.computed('model.shrink', function() {
-    if (this.get('model.shrink')) {
-      return '5';
-    } else {
-      return '1';
-    }
-  }),
   hasChildren: Ember.computed('model.childnode.length', function() {
     return this.get('model.childnode.length') > 0;
   }),
@@ -41,6 +33,18 @@ export default Ember.Component.extend(IdeanodeMixin, {
       return 'meta-text';
     }
     return 'leaf-text';
+  }),
+  displayButtonClass: Ember.computed('model.display', function() {
+    if (this.get('model.display')) {
+      return 'toggle-button green';
+    }
+    return 'toggle-button grey'
+  }),
+  computeButtonClass: Ember.computed('model.showComputed', function() {
+    if (this.get('model.showComputed')) {
+      return 'toggle-button green';
+    }
+    return 'toggle-button grey'
   }),
   showChildren: Ember.computed('model.showsChildren', function() {
     return this.get('model.showsChildren');
@@ -96,21 +100,33 @@ export default Ember.Component.extend(IdeanodeMixin, {
     toggleChildren() {
       let model = this.get('model');
       model.set('showsChildren', !model.get('showsChildren'));
+    },
+    toggleDisplay() {
+      let model = this.get('model');
+      model.set('display', !model.get('display'));
+    },
+    toggleComputed() {
+      let model = this.get('model');
+      model.set('showComputed', !model.get('showComputed'));
     }
   },
   didInsertElement() {
     this._super(...arguments);
-    let textArea = this.$('textarea');
+    // Must specify `first` in order to ignore child nodes.
+    let textArea = this.$('textarea').first();
     textArea.focus();
     // Save the edited text when the textarea loses focus.
     // This will get triggered when the user switches to edit another ideanode, or when the page is left.
     textArea.on('focusout', () => {
       this.set('model.metaText', this.get('text'));
+      // TODO: confirm magic number in other browsers, and with other font sizes.
+      let magic = 10;
+      textArea.css('height', (textArea[0].scrollHeight - magic).toString() + 'px');
     });
   },
   willDestroyElement() {
     this._super(...arguments);
-    let textArea = this.$('textarea');
+    let textArea = this.$('textarea').first();
     textArea.off('focusout');
   }
 });
