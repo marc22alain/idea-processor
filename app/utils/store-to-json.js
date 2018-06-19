@@ -36,7 +36,7 @@ export default function storeToJson(store) {
 
 
 function extractModel(store) {
-  let schema = store.get('_identityMap._schema');
+  // let schema = store.get('_identityMap._schema');
   let models = store.get('_identityMap._schema._models');
   let ideanodeModel = models.ideanode;
   model = ideanodeModel;
@@ -64,13 +64,14 @@ function addAttributes(json, record) {
       case 'number':
         value = record.get(key) || 0;
         break;
-      case 'datetime':
+      case 'datetime': {
         let date = new Date(0);
         value = record.get(key) || date.toISOString();
         break;
+      }
       default:
         value = record.get(key);
-    };
+    }
     json.attributes[key] = value;
   });
 }
@@ -78,7 +79,6 @@ function addAttributes(json, record) {
 function addRelationships(json, record) {
   json.relationships = {};
   model.relationshipKeys.forEach(function(key) {
-    let value;
     let keyType = model.relationships[key].type;
     switch (keyType) {
       case 'hasOne': {
@@ -104,7 +104,7 @@ function addRelationships(json, record) {
       }
       default:
         throw new Error('Unknown relationship key');
-    };
+    }
   });
 }
 

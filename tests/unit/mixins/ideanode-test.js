@@ -18,7 +18,7 @@ test('the addIdea method adds a new idea as childnode to the model idea', functi
   // console.log(store);
   store.update(t => t.addRecord({ type: 'ideanode' }))
     .then((record) => {
-      console.log(record);
+      // console.log(record);
       assert.ok(record.id, 'The store added the first record.');
       let newIdeanode = store.cache.query(q => q.findRecord({ type: 'ideanode', id: record.id }));
       assert.equal(newIdeanode.get('childnode.length'), 0, 'The parent record has no children yet.');

@@ -17,14 +17,18 @@ export default Ember.Controller.extend({
             node.get('childnode').removeObject(ideaNode)
               .then(() => {
                 ideaNode.remove()
+                  // eslint-disable-next-line no-console
                   .catch((e) => console.log('DELETE failed at remove()', e));
               })
+              // eslint-disable-next-line no-console
               .catch((e) => console.log('DELETE failed at removeObject()', e));
           })
+          // eslint-disable-next-line no-console
           .catch((e) => console.log('DELETE failed at findRelatedRecord()', e));
         } else {
           // Is a root node
           ideaNode.remove()
+            // eslint-disable-next-line no-console
             .catch((e) => console.log('DELETE failed at remove()', e));
         }
     }

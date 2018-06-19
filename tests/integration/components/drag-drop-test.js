@@ -1,8 +1,16 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
 moduleForComponent('drag-drop', 'Integration | Component | drag drop', {
-  integration: true
+  integration: true,
+  beforeEach() {
+    this.register('service:store', StubStoreService);
+  }
+});
+
+let StubStoreService = Ember.Service.extend({
+  isHappy: true
 });
 
 test('it renders', function(assert) {
@@ -12,14 +20,5 @@ test('it renders', function(assert) {
 
   this.render(hbs`{{drag-drop}}`);
 
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#drag-drop}}
-      template block text
-    {{/drag-drop}}
-  `);
-
-  assert.equal(this.$().text().trim(), 'template block text');
+  assert.equal(this.$().text().trim(), 'Move', 'Checking that it shows the button hint text.');
 });

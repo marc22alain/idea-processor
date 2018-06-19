@@ -1,3 +1,4 @@
+/* global $ */
 import Ember from 'ember';
 import storeToJson from 'idea-processor/utils/store-to-json';
 
@@ -36,16 +37,9 @@ export default Ember.Controller.extend({
       this.transitionToRoute('documents');
     },
     branchFocus() {
-      let currentRoute = this.get('target.currentURL');
-      let id = currentRoute.split('/')[2];
-      console.log(this.getRouteIdParam());
-      // console.log(this.get('target.currentURL'));
       this.transitionToRoute('branch-focus', this.getRouteIdParam());
     },
     recentOrder() {
-      let currentRoute = this.get('target.currentURL');
-      let id = currentRoute.split('/')[2];
-      console.log(this.getRouteIdParam());
       this.transitionToRoute('recent-order', this.getRouteIdParam());
     },
     exportAll() {
