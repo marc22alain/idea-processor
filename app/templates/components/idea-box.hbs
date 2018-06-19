@@ -1,7 +1,7 @@
 <vbox class={{concat-string ruledClass targetClass}}>
   <hbox>
     {{input type="number" value=model.order class=(concat-string levelClass "control-button") }}
-    <button {{action "toggleDisplay"}} class={{displayButtonClass}}>display</button>
+    <button {{action "toggleDisplay"}} class={{displayButtonClass}}>include</button>
     <box xs=8>
       {{textarea rows="1" value=text class=(concat-string nodeClass levelClass "userinput") spellcheck=false}}
     </box>
