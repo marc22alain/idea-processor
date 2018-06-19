@@ -6,8 +6,12 @@ Address immediately, for distribution:
   . highlight the textarea when it's changed, hinting that it isn't saved yet
 
 Deploy with `npm run deploy`
+- issue with path of rootURL (config/environment.js)
+  . local `-prod` requires '/'
+  . gh-pages `-prod` requires 'idea-processor/'
 
 Bugs
+- if clicking off a node also turns it into a non-leaf, then the size estimation is short
 - deleting a parent node leaves its children in the DB
 - recompiling of computedText does not flow all the way up the chain
   .or at least, not consistently
@@ -35,6 +39,9 @@ App error logging, to help debug the IndexedDB issue and others
   . Ember service should also be lightweight, and use its own libraries for POSTing log data
     .. in the event of a failed POST, should raise an immediate alarm
 
+USAGE:
+- had a quite urge to provide templating for common idea formats, or tasks
+  . e.g. "Screening" task for resumes
 
 Done
 - √ FEATURE: when making a new node, focus shifts to that node
