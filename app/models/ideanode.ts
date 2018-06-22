@@ -20,10 +20,12 @@ export default Model.extend({
   lastUpdate: attr('datetime'),
 
 
-  replaceAttribute(attribute, value, options) {
-    if (attribute !== 'lastUpdate') {
+  replaceAttribute(attribute : string, value : string | boolean | number | Date, options : {}) {
+      if (attribute !== 'lastUpdate') {
       this.set('lastUpdate', new Date());
     }
     Ember.run(() => this._super(attribute, value, options));
   }
 });
+
+/// <reference path="types/idea-processor/ember-orbit.d.ts" />
