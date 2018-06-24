@@ -24,6 +24,26 @@ export default Model.extend({
     if (attribute !== 'lastUpdate') {
       this.set('lastUpdate', new Date());
     }
+    // Original `replaceAttribute` is asynchronous, but returns nothing.
     Ember.run(() => this._super(attribute, value, options));
+  },
+
+  remove(options) {
+    let childNodes = this.get('childnode').get('content');
+    let model = this;
+    return processRemoves(childNodes).then(() => {
+      // Body of original `remove` method:
+      const store = Ember.get(this, '_storeOrError');
+      return store.update(t => t.removeRecord(model.identity), options);
+    });
   }
 });
+
+function processRemoves(childNodes) {
+  let child = childNodes.pop();
+  if (child) {
+    return child.remove().then(() => processRemoves(childNodes));
+  } else {
+    return Ember.RSVP.resolve();
+  }
+}
